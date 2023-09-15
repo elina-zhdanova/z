@@ -1,0 +1,196 @@
+.header {
+    width: 100%;
+    height: 740px;
+    background-image: url(../img/moun.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    text-align: center;
+    vertical-align: middle;
+    position: relative;
+    background-attachment: fixed;
+    /* border-bottom: 5px solid #9de4ef;
+    box-shadow: 0px 0px 10px #9de4ef(0, 0, 0, 0.5); */
+    background-color: rgb(2, 2, 2);
+    opacity: 0.9;
+}
+
+
+.menu {
+    padding-top: 30px;
+    padding-bottom: 80px;
+    color: #2d2c2c;
+    font-size: 20px;
+    font-family: 'Lora', serif;
+    letter-spacing: 1.5px;
+}
+
+.text{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 28px;
+    letter-spacing: 1.5px;
+    padding-top: 10px;
+    color: #2d2c2c;
+}
+
+.text-small{
+    padding: 24px 0 38px 0;
+    letter-spacing: 1.5px;
+    color: #2d2c2c;
+    font-family: 'Lora', serif;     
+    font-size: 22px;
+    margin: 0 auto;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.header li {
+    display: inline;
+    margin-left: 60px;
+    color: rgb(2, 2, 2);
+}
+
+.header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* контекстный селектор: */
+.menu a {
+    /* применяем только к тегам а внутри меню, вложенность не имеет значения*/
+    text-decoration: none;
+    /* убираем подчеркивания */
+    color: rgb(14, 14, 14);
+    /* цвет ссылок */
+    font-weight: bold;
+    /* жирность начертания ссылок*/
+}
+
+.container {
+    max-width: 100%;
+    /* ограничиваем область nav*/
+    margin: 0 auto;
+    /* отступ сверху и снизу нам не нужен, слева и справа хотим 25% распределить автоматом*/
+}
+
+.w-50 {
+    width: 50%;
+}
+
+.mx-auto {
+    margin: auto;
+}
+
+/* картинка и текст 1 */
+
+.main{
+    padding: 10px;
+    font-family: 'Montserrat', sans-serif;;
+}
+
+
+/* .left article-text1{
+    margin-right: 15px;
+    margin-bottom: 10px;
+    display: inline;
+    float: left;
+}
+ */
+
+.h2{
+    font-size: 20px;
+}
+
+.article-1{
+    display: flex;
+    flex-direction: row;
+    padding: 15px;
+    margin: 10px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.img{
+    background-color: rgb(0, 0, 0);
+    opacity: 0.2;
+}
+
+.article-1>img-1{
+    padding-top: 20px;
+}
+
+.footer{
+    background-color: black;
+    color: aliceblue;
+    height: 40px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.item{
+    padding-top: 10px;
+}
+
+.tcontainer {
+
+    padding: 30px;
+    
+} 
+
+table {
+    width: 800px;
+    border-collapse: collapse;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(57, 43, 70, 0.1);
+}
+
+th,
+td {
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #2d2c2c;
+    font-family: 'Lora', serif;
+}
+
+th {
+    text-align: left;
+}
+
+thead {
+    th {
+        background-color: #55608f;
+    }
+}
+
+tbody {
+    tr {
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+    }
+
+    td {
+        position: relative;
+
+        &:hover {
+            &:before {
+                content: "";
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: -9999px;
+                bottom: -9999px;
+                background-color: rgba(255, 255, 255, 0.2);
+                z-index: -1;
+            }
+        }
+    }
+} 
