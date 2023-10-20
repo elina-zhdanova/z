@@ -1,0 +1,69 @@
+body{
+    background-color: #070b06;
+    background-image: url(https://i.pinimg.com/originals/89/6d/3f/896d3f90415340fb555e70f5599bb4c2.jpg);
+    background-repeat: no-repeat;
+}
+
+.header{
+    margin: 0;
+    padding: 0;
+}
+
+.logo img{
+    height: 56px;
+}
+
+.S{
+    background: rgba(255, 255, 255, 0.20);
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.wrap {
+    color: #ffffff;
+    list-style-type: none;/* Убирает буллиты */
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    margin-left: 50px;
+    margin-right: 50px;
+    font-size: 20px;
+    text-align: center;
+}
+
+h1{
+    color: #ffffff;
+}
+
+.color{
+    color: #ffffff;
+    text-decoration: none; /*убирает подчеркивания*/
+    margin-right: 25px;
+}
+
+.rad{
+    border-radius: 8px;
+}
+
+.seasons{
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.15);
+    margin: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.choice{
+    padding-top: 330px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.wrap-s{
+    padding: 10px 15px 5px 15px;
+}
+
+.first{
+    margin-left: 13px;
+}
