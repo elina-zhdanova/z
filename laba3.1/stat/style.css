@@ -1,7 +1,8 @@
-body{
+.body{
     background-color: #070b06;
     background-image: url(https://i.pinimg.com/originals/89/6d/3f/896d3f90415340fb555e70f5599bb4c2.jpg);
     background-repeat: no-repeat;
+    background-size: contain;
 }
 
 .header{
@@ -25,20 +26,29 @@ body{
     display: flex;
     flex-direction: row;
     padding: 0;
-    margin-left: 50px;
-    margin-right: 50px;
+    margin-left: 45px;
+    margin-top: 0;  
     font-size: 20px;
-    text-align: center;
 }
 
 h1{
     color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 1.5px;
 }
 
 .color{
     color: #ffffff;
     text-decoration: none; /*убирает подчеркивания*/
-    margin-right: 25px;
+}
+
+.lili{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.first{
+    padding-left: 45px;
 }
 
 .rad{
@@ -52,6 +62,7 @@ h1{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .choice{
@@ -64,6 +75,98 @@ h1{
     padding: 10px 15px 5px 15px;
 }
 
-.first{
-    margin-left: 13px;
+footer{
+    vertical-align: middle;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+
+.bottom{
+    align-items: center;
+    display: flex;
+
+}
+
+.age{
+    font-family: 'Lora', serif;
+    background: #ffffff;
+    border-radius: 50%;     
+    height: 38px;
+    width: 38px;
+    color: #000000;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 35px;
+    margin-left: 20px;
+
+}
+
+.copy{
+    font-family: 'Lora', serif;
+    color: #ffffff;
+    float: right;
+    flex: 1;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.copF{
+    color: #000;
+}
+
+.ageF{
+    background: #b4c4c8;
+}
+
+footer{
+    background: rgba(255, 255, 255, 0.20);
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+
+
+
+/*Fiona*/
+
+
+.Cake{
+    color: #000000;
+}
+
+.Ser-wrap{
+    color: #000000;
+}
+
+a, img{
+    text-decoration: none;
+}
+
+.fiona{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.siz{
+    width: 250px;
+    height: 150px;
+}
+
+.fion{
+    background-color: #d1f6ff;
+    background-image: url(https://abc.tvhub.life/uploads/posts/2023-09/bgfull-adventure-time-fionna-and-cake-s1.webp);
+}
+
+.wrapF{
+    color: #000;
+}
+
+
+
+/*Comix*/
+.wrapCom{
+    width: auto;
+    height: 500px;
 }

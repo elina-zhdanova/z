@@ -1,0 +1,52 @@
+.body{
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+}
+
+.rad{
+    height: 150px;
+}
+
+.siz{
+    width: 150px;
+    height: 90px;
+}
+
+.Cake{
+    font-size: 1.2rem;
+}
+
+.page2{
+    padding-top: 160px;
+}
+
+.h3{
+    margin-top: 0px;
+}
+
+.wrap{
+    display: none;
+}
+
+.wrap-s{
+    padding: 3px;
+}
+
+.seasons{
+    padding: 8px;
+    margin: 10px;
+}
+
+.fiona {
+    padding-bottom: 0px;
+    margin-bottom: 0px
+}
+
+.S{
+    padding-top: 3px;
+}
+
+.copy{
+    font-size: small;
+}
+
