@@ -1,0 +1,38 @@
+.header{
+    padding: 200px 0;
+    background-image: url(https://weknit.ru/wp-content/uploads/2021/07/l80408a_2_1200x1800.jpg);
+    background-position: center;
+    background-size: cover;
+    background-color: rgb(2, 2, 2);
+    opacity: 1;
+    
+}
+
+.body{
+    font-family: 'Hedvig Letters Serif', serif;
+}
+
+.h1{
+    letter-spacing: 3px;
+}
+
+.fa-regular{
+    font-family: "Font Awesome 6";
+    font-weight: 400;
+}
+
+.bd-btn{
+    padding: 12px 65px 12px 35px;
+    color: var(--bd-theme-primary);
+    border: 1px solid var(--bd-theme-primary);
+}
+
+.bd-btn span{
+    font-weight: 700;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 12px 15px;
+    border-left: 1px solid var(--bd-theme-primary);
+    display: inline-block;
+}
