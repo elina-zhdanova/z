@@ -16,10 +16,6 @@
     letter-spacing: 3px;
 }
 
-.fa-regular{
-    font-family: "Font Awesome 6";
-    font-weight: 400;
-}
 
 .bd-btn{
     padding: 12px 65px 12px 35px;
@@ -36,3 +32,83 @@
     border-left: 1px solid var(--bd-theme-primary);
     display: inline-block;
 }
+
+.pt-50{
+    padding-top: 50px;
+}
+
+.pb-90{
+    padding-bottom: 90px;
+}
+
+.mb-40{
+    margin-bottom: 40px;
+}
+
+.mb-30{
+    margin-bottom: 30px;
+}
+
+.bd-services-item {
+    padding: 40px;
+    box-shadow: 0px 3px 36px 0px rgba(6, 6, 6, 0.08);
+    position: relative;
+}
+
+.title{
+    letter-spacing: 1.1px;
+    font-weight: 500;
+    margin-bottom: 30px;
+    font-family: 'Rethink Sans', sans-serif;
+}
+
+.p{
+    font-size: 16px;
+    font-weight: normal;
+    color: #636363;
+    margin-bottom: 15px;
+    line-height: 26px;
+    letter-spacing: 2px;
+}
+
+.mr-70{
+    margin-right: 70px;
+}
+
+.mb-30{
+    margin-bottom: 30px;
+}
+
+.img{
+    max-width: 100%;
+}
+
+.mb-10{
+    margin-bottom: 10px;
+}
+ .mb-25{
+    margin-bottom: 25px;
+ }
+
+ .mb-30{
+    margin-bottom: 30px;
+ }
+ 
+ .forma{
+    background-color: #f5f8fb;
+
+ }
+
+ .mar{
+    margin-left: 40px;
+     margin-right: 40px;
+     margin-bottom: 15px;
+ }
+
+ .color{
+    background-color: rgb(32, 47, 67);
+ }
+
+ .txt{
+    color: #f5f8fb;
+ }
