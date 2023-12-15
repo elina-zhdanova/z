@@ -8,6 +8,13 @@
     
 }
 
+.dec{
+    padding: 2px;
+}
+
+.colo{
+    color: #000;
+}
 .body{
     font-family: 'Hedvig Letters Serif', serif;
 }
@@ -16,22 +23,6 @@
     letter-spacing: 3px;
 }
 
-
-.bd-btn{
-    padding: 12px 65px 12px 35px;
-    color: var(--bd-theme-primary);
-    border: 1px solid var(--bd-theme-primary);
-}
-
-.bd-btn span{
-    font-weight: 700;
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 12px 15px;
-    border-left: 1px solid var(--bd-theme-primary);
-    display: inline-block;
-}
 
 .pt-50{
     padding-top: 50px;
@@ -49,10 +40,8 @@
     margin-bottom: 30px;
 }
 
-.bd-services-item {
-    padding: 40px;
-    box-shadow: 0px 3px 36px 0px rgba(6, 6, 6, 0.08);
-    position: relative;
+.bd-services-item{
+    background-color: #f5f8fb;
 }
 
 .title{
@@ -112,3 +101,22 @@
  .txt{
     color: #f5f8fb;
  }
+
+ .mb-30{
+    margin-bottom: 30px;
+ }
+
+ .mb-90{
+    margin-bottom: 90px;
+ }
+
+ .item {
+    padding: 40px;
+    box-shadow: 0px 3px 36px 0px rgba(6, 6, 6, 0.08);
+    position: relative;
+    border-radius: 8px;
+} 
+
+.w-img{
+    max-width: 100%;
+}
