@@ -17,9 +17,20 @@
     <h1 class="h1">Feedback form</h1>
     
     <form action="http://httpbin.org/post" method="POST" enctype="multipart/form-data">
+        <!-- action="http://httpbin.org/post" куда мы отправляем форму -->
+        <!-- method - Этот атрибут определяет способ отправки данных -->
+        <!-- заголовок Content-Type указывает тип данных, отправляемых на сервер.
+        enctype позволяет конкретизировать значение в Content-Type HTTP заголовок, 
+        включённый в запрос, при генерировании
+        отправки формы. Этот заголовок очень важен, потому что указывает серверу, 
+        какой тип данных отправляется.
+        multipart/form-data - Это для публикации целых файлов как части отправки формы -->
         <div class="form-group">
             <label for="name">Full name</label>
             <input type="text" id="name" name="name" placeholder="Full name" required>
+            <!-- Чтобы явно связать <label> с <input>, сначала нужно добавить id к <input>. Затем вы
+            добавляете for к <label>, где значение for совпадает со значением id в <input> -->
+            <!-- type="text" Значение по умолчанию. Однострочное текстовое поле. -->
         </div>
     
         <div class="form-group">
@@ -39,7 +50,7 @@
     
         <div class="form-group">
             <label for="type">Type of address:</label>
-            <select id="type" name="type" required>
+            <select id="type" name="type" required> <!--select предоставляет меню опций -->
                 <option value="" disabled selected>Select option</option>
                 <option value="Жалоба">Complaint</option>
                 <option value="Предложение">Suggestion</option>
@@ -53,7 +64,8 @@
     
         <div class="form-group">
             <label for="attachments">Attachments:</label>
-            <input type="file" id="attachments" name="attachments">
+            <input type="file" id="attachments" name="attachments"> 
+            <!-- type="file" Элемент управления, позволяющий пользователю выбирать файл -->
         </div>
     
         <div class="form-group">
@@ -62,6 +74,8 @@
         </div>
     
         <button type="submit">Send</button>
+        <!-- Кнопка, которая отправляет форму. -->
+    </form>
 
 </body>
 </html>
