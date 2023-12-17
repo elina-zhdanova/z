@@ -1,79 +1,67 @@
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
-.panel {
-    text-align: center;
+body {
+    background: linear-gradient(to right, #11f185, #196af5);
+    font-size: 12px;
 }
 
-
-
-#board {
-    position: relative;
-    height: 450px;
-    width: 450px;
-    margin: 50px auto 30px auto;
-    overflow: hidden;
-    display: grid;
-    grid-auto-columns: 1fr;
-    grid-auto-rows: 1fr;
-    grid-gap: 10px;
+.calculator {
+    width: 470px;
+    height: auto;
+    background-color: black;
+    margin: 150px auto;
+    border-radius: 20px;
+    padding: 10px;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+        rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
 
-.field {
-    background-color: red;
-    /*#78bec5; */
-    border-radius: 14px;
-    cursor: pointer;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 5em;
-    font-family: 'Arial', sans-serif;
+.display {
+    color: white;
+    font-size: 70px;
+    text-align: end;
+    padding-top: 20px;
+    word-wrap: break-word;
 }
 
-.free:hover {
-    background-color: #3d4250;
-}
-
-#modal {
-    position: absolute;
-    top: 0;
-    left: 0;
+.display input {
     width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    height: 30px;
+    font-size: 20px;
+    text-align: right;
+    border: none;
+    background-color: #f7f7f7;
+    border-radius: 3px;
 }
 
-#modal__window {
-    position: relative;
-    top: 30%;
-    width: 30%;
-    margin: 0 auto;
-    padding: 5px 20px 20px;
-    background-color: #f8f6f6;
-    text-align: center;
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
 }
 
-button {
-    min-width: 100px;
-    border: 1px solid lightgray;
-    padding: 15px;
-    background-color: #fff;
-    font-size: 20pt;
-    border-radius: 15px;
-    opacity: 0.7;
+.button {
+    border: none;
+    color: white;
+    border-radius: 50px;
+    padding: 28px 30px;
+    width: 22%;
+    margin: 10px 6px;
+    font-size: 30px;
+    background-color: rgba(128, 128, 128, 0.372);
 }
 
-button:hover {
-    box-shadow: 2px 1px 0 rgb(0, 0, 0);
+.zero-btn {
+    padding: 30px 190px 26px 20px;
 }
 
-button:active {
-    box-shadow: inset 2px 1px 0;
+.btn-orange {
+    background-color: orange;
 }
 
-.hidden {
-    display: none;
+.btn-grey {
+    background-color: grey;
 }
