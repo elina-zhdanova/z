@@ -1,149 +1,249 @@
-function createAuthorElement(record) {
-    let user = record.user || { 'name': { 'first': '', 'last': '' } };
-    let authorElement = document.createElement('div');
-    authorElement.classList.add('author-name');
-    authorElement.innerHTML = user.name.first + ' ' + user.name.last;
-    return authorElement;
+'use strict';
+
+/* сохраняем URL-адрес JSON, который мы хотим получить в переменной.*/
+const BASE_URL = new URL("http://cat-facts-api.std-900.ist.mospolytech.ru");
+
+const state = {
+    page: 1,
+    perPage: 10,
+    pageCount: 0
+};
+
+
+/*она находит элемент списка с помощью метода querySelector и сохраняет его в переменную lines. 
+Затем устанавливает для этого элемента атрибут id со значением "hidden", который скрывает элемент с помощью CSS. 
+Далее функция очищает содержимое списка, устанавливая его innerHTML в пустую строку. 
+Таким образом, список автодополнения становится пустым и скрытым.*/
+const hideLines = () => { /* для скрытия списка автодополнения */
+    let lines = document.querySelector(".lines");
+    lines.setAttribute("id", "hidden");
+    lines.innerHTML = "";
+};
+
+/* Данная функция заполняет список автодополнения элементами из переданной коллекции (collection).
+Сначала она находит элемент списка с помощью метода querySelector и сохраняет его в переменную lines. 
+Затем удаляет у этого элемента атрибут id, который ранее использовался для скрытия списка.
+Далее функция проходит по каждому элементу в коллекции и добавляет его в список автодополнения. 
+Для этого используется свойство innerHTML, которое позволяет изменять содержимое элемента HTML. 
+Каждый элемент коллекции оборачивается в тег <p>, чтобы отображаться в виде отдельной строки в списке.
+Таким образом, после выполнения функции список автодополнения будет заполнен элементами из переданной коллекции и отображаться на странице. */
+const fillLineByCollection = (collection) => { /*для заполнения списка автодополнения*/
+    let lines = document.querySelector(".lines");
+    lines.removeAttribute("id");
+    for (let element of collection) {
+        lines.innerHTML += `<p>${element}</p>`;
+    }
+};
+
+
+/*Данная функция заполняет страницу фактами из переданной коллекции (collection).
+Сначала она находит элемент с id="post_t" с помощью метода getElementById и сохраняет его в переменную template. 
+Этот элемент является шаблоном для отдельного факта.
+Затем функция проходит по каждому элементу в коллекции и создает копию шаблона с помощью метода cloneNode. 
+Каждый факт заполняется данными из соответствующего элемента коллекции.
+Для заполнения текстового содержимого факта используется свойство textContent, которое позволяет изменять текстовое содержимое элемента HTML.
+Для заполнения имени пользователя используется условный оператор ?. (оператор безопасной навигации), 
+который позволяет избежать ошибок, если какое-то свойство объекта не определено.
+Наконец, созданный факт добавляется в основной контейнер с помощью метода append.
+Таким образом, после выполнения функции страница будет заполнена фактами из переданной коллекции. 
+Каждый факт будет содержать текст и имя пользователя, если оно определено в элементе коллекции. 
+ */
+const fillPageByCollection = (collection) => { /*заполнения страницы фактов*/
+    let template = document.getElementById("post_t");
+    const main = document.querySelector(".posts");
+    for (let record of collection) {
+        let post = template.content.cloneNode(true);
+        post.querySelector("p").textContent = record.text;
+        post.querySelector(".userCard").textContent = 
+            record?.user?.name?.first +
+            " " +
+            record?.user?.name?.last;
+        main.append(post);
+    }
+};
+
+function pageCounter(objectPagination) {
+    state.pageCount = objectPagination.total_pages;
 }
 
-function createUpvotesElement(record) {
-    let upvotesElement = document.createElement('div');
-    upvotesElement.classList.add('upvotes');
-    upvotesElement.innerHTML = record.upvotes;
-    return upvotesElement;
-}
+/*Данная функция предназначена для отображения кнопок пагинации на странице.
+ Она вызывается каждый раз, когда происходит изменение состояния страницы (например, при поиске или переходе на другую страницу).
 
-function createFooterElement(record) {
-    let footerElement = document.createElement('div');
-    footerElement.classList.add('item-footer');
-    footerElement.append(createAuthorElement(record));
-    footerElement.append(createUpvotesElement(record));
-    return footerElement;
-}
+Функция начинается с определения переменных first и last, которые определяют первую и последнюю кнопки пагинации, 
+которые будут отображаться на странице. 
+При этом первая кнопка будет не меньше 1, а последняя не больше значения переменной state.pageCount (количество страниц).
 
-function createContentElement(record) {
-    let contentElement = document.createElement('div');
-    contentElement.classList.add('item-content');
-    contentElement.innerHTML = record.text;
-    return contentElement;
-}
+Затем функция получает элемент кнопки пагинации с помощью метода getElementById и очищает ее содержимое с помощью свойства innerHTML.
 
-function createListItemElement(record) {
-    let itemElement = document.createElement('div');
-    itemElement.classList.add('facts-list-item');
-    itemElement.append(createContentElement(record));
-    itemElement.append(createFooterElement(record));
-    return itemElement;
-}
+Далее функция создает кнопки пагинации с помощью цикла for, который проходит по всем страницам, 
+начиная с первой (first) и заканчивая последней (last). 
+Каждая кнопка создается с помощью метода createElement и добавляется в контейнер кнопок пагинации с помощью метода append.
 
-function renderRecords(records) {
-    let factsList = document.querySelector('.facts-list');
-    factsList.innerHTML = '';
-    for (let i = 0; i < records.length; i++) {
-        factsList.append(createListItemElement(records[i]));
+При этом каждая кнопка получает обработчик события onclick, который вызывает функцию goToPage с номером страницы в качестве аргумента.
+
+Каждая кнопка также получает класс "pageButton", чтобы ее можно было стилизовать с помощью CSS.
+
+После создания всех кнопок пагинации функция проходит по всем дочерним элементам контейнера кнопок пагинации и 
+устанавливает атрибут "id" для активной страницы (текущей страницы), чтобы ее можно было выделить стилями.
+
+Таким образом, функция numeration отображает кнопки пагинации на странице и устанавливает обработчики событий для перехода на другие страницы при клике на кнопки. */
+
+
+function numeration() { /*для отображения кнопок пагинации.*/
+    let first = Math.max(1, state.page - 2);//первая кнопка пагинации, не меньше 1
+    let btnp = document.getElementById('btn-p');
+    let last = Math.min(state.page + 2, state.pageCount);//последняя кнопка пагинации, не больше количества страниц
+    btnp.innerHTML = "";
+    for (let i = first; i <= last; i++) {
+        let btn = document.createElement("button");
+        btn.innerHTML = i;
+        btn.onclick = () => goToPage(i);
+        btn.setAttribute("class", "pageButton");
+        btnp.append(btn);
+    }
+    for (let btn of btnp.children) {
+        if (btn.innerHTML == state.page) btn.setAttribute("id", "activePage");
     }
 }
+/**Данная функция предназначена для отправки GET-запроса на сервер и получения данных о фактах. 
+ Она принимает три параметра: номер страницы (page), количество записей на странице (perPage) и строку поиска (q).
 
-function setPaginationInfo(info) {
-    document.querySelector('.total-count').innerHTML = info.total_count;
-    let start = info.total_count && (info.current_page - 1) * info.per_page + 1;
-    document.querySelector('.current-interval-start').innerHTML = start;
-    let end = Math.min(info.total_count, start + info.per_page - 1);
-    document.querySelector('.current-interval-end').innerHTML = end;
-}
+Сначала функция создает новый объект URL с помощью конструктора URL, указывая в качестве первого параметра строку "facts" 
+(что означает, что мы запрашиваем данные о фактах) и в качестве второго параметра - базовый URL (BASE_URL). 
+Затем функция устанавливает параметры запроса (page, per-page и q) с помощью метода searchParams.set.
 
-function createPageBtn(page, classes = []) {
-    let btn = document.createElement('button');
-    classes.push('btn');
-    for (cls of classes) {
-        btn.classList.add(cls);
-    }
-    btn.dataset.page = page;
-    btn.innerHTML = page;
-    return btn;
-}
+Далее функция создает новый объект XMLHttpRequest с помощью конструктора XMLHttpRequest и открывает соединение с сервером с помощью метода open, 
+указывая тип запроса (GET) и URL. Затем функция отправляет запрос на сервер с помощью метода send.
 
-function renderPaginationElement(info) {
-    let btn;
-    let paginationContainer = document.querySelector('.pagination');
-    paginationContainer.innerHTML = '';
+После отправки запроса функция устанавливает обработчик события onload для объекта XMLHttpRequest. 
+Когда ответ от сервера будет получен, обработчик вызовется автоматически. 
+Внутри обработчика функция парсит полученный JSON-объект с помощью метода JSON.parse и вызывает другие функции: 
+cleanPosts (очистка контейнера с постами), fillPageByCollection (заполнение контейнера с постами данными из полученного JSON-объекта), 
+pageCounter (отображение количества страниц) и numeration (отображение кнопок пагинации).
 
-    btn = createPageBtn(1, ['first-page-btn']);
-    btn.innerHTML = 'Первая страница';
-    if (info.current_page == 1) {
-        btn.style.visibility = 'hidden';
-    }
-    paginationContainer.append(btn);
+Таким образом, функция getRequest отправляет GET-запрос на сервер, получает данные о фактах и вызывает другие функции для отображения этих данных на странице. */
 
-    let buttonsContainer = document.createElement('div');
-    buttonsContainer.classList.add('pages-btns');
-    paginationContainer.append(buttonsContainer);
-
-    let start = Math.max(info.current_page - 2, 1);
-    let end = Math.min(info.current_page + 2, info.total_pages);
-    for (let i = start; i <= end; i++) {
-        btn = createPageBtn(i, i == info.current_page ? ['active'] : []);
-        buttonsContainer.append(btn);
-    }
-
-    btn = createPageBtn(info.total_pages, ['last-page-btn']);
-    btn.innerHTML = 'Последняя страница';
-    if (info.current_page == info.total_pages) {
-        btn.style.visibility = 'hidden';
-    }
-    paginationContainer.append(btn);
-}
-
-function downloadData(page = 1) {
-    let factsList = document.querySelector('.facts-list');
-    let url = new URL(factsList.dataset.url);
-    let perPage = document.querySelector('.per-page-btn').value;
-    url.searchParams.append('page', page);
-    url.searchParams.append('per-page', perPage);
+function getRequest(page = 1, perPage = 10, q = "") {
+    let url = new URL("facts", BASE_URL);
+    url.searchParams.set("page", page);
+    url.searchParams.set("per-page", perPage);
+    if (q != "") url.searchParams.set("q", q);
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', url);
-    xhr.responseType = 'json';
-    xhr.onload = function () {
-        renderRecords(this.response.records);
-        setPaginationInfo(this.response['_pagination']);
-        renderPaginationElement(this.response['_pagination']);
-    };
+    xhr.open("GET", url);
     xhr.send();
+    xhr.onload = function() {
+        let json = JSON.parse(xhr.response);
+        cleanPosts();
+        fillPageByCollection(json.records);
+        pageCounter(json._pagination);
+        numeration();
+    };
 }
 
-function perPageBtnHandler(event) {
-    downloadData(1);
+/*Данная функция предназначена для отправки GET-запроса на сервер и получения данных для автодополнения. 
+Она принимает один параметр - строку поиска (q), которая является необязательным и по умолчанию равна пустой строке.
+
+Сначала функция создает новый объект URL с помощью конструктора URL, указывая в качестве первого параметра строку "autocomplete" 
+(что означает, что мы запрашиваем данные для автодополнения) и в качестве второго параметра - базовый URL (BASE_URL). 
+Затем функция устанавливает параметр запроса q с помощью метода searchParams.set.
+
+Далее функция создает новый объект XMLHttpRequest с помощью конструктора XMLHttpRequest и открывает соединение с сервером 
+с помощью метода open, указывая тип запроса (GET) и URL. Затем функция отправляет запрос на сервер с помощью метода send.
+
+После отправки запроса функция устанавливает обработчик события onload для объекта XMLHttpRequest. 
+Когда ответ от сервера будет получен, обработчик вызовется автоматически. 
+Внутри обработчика функция парсит полученный JSON-объект с помощью метода JSON.parse и вызывает другие функции: 
+hideLines (скрытие контейнера с результатами предыдущего поиска), 
+fillLineByCollection (заполнение контейнера с результатами данными из полученного JSON-объекта).
+
+Таким образом, функция getAutocompletition отправляет GET-запрос на сервер, получает данные для автодополнения 
+и вызывает другие функции для отображения этих данных на странице. */
+function getAutocompletition(q = "") {
+    let url = new URL("autocomplete", BASE_URL);
+    url.searchParams.set("q", q);
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", url);
+    xhr.send();
+    xhr.onload = function() {
+        let json = JSON.parse(xhr.response);
+        hideLines();
+        fillLineByCollection(json);
+    };
 }
 
-function pageBtnHandler(event) {
-    if (event.target.dataset.page) {
-        downloadData(event.target.dataset.page);
-        window.scrollTo(0, 0);
+function cleanPosts() {
+    let main = document.querySelector(".posts");
+    main.innerHTML = "";
+}
+
+function goToPage(pageNum) {
+    state.page = pageNum;
+    getRequest(state.page, state.perPage);
+}
+
+function getNextPage() {
+    state.page++;
+    getRequest(state.page, state.perPage);
+}
+
+function getBackPage() {
+    state.page--;
+    getRequest(state.page, state.perPage);   
+}
+
+function onPagesChange() {
+    let perPage = document.getElementById('Per-page');
+    state.perPage = Number(perPage.value);
+    state.page = 1;
+    getRequest(state.page, state.perPage);
+}
+
+
+/*Данная функция является обработчиком события onclick на кнопке с классом "search-btn". Она вызывается при клике на эту кнопку.
+Первым действием функция вызывает функцию hideLines, которая скрывает контейнер с классом "lines".
+Затем функция устанавливает значение переменной state.page в 1, так как при новом поиске нужно начинать с первой страницы.
+Далее функция получает элемент поля ввода с классом "search-field" и его значение. 
+Затем она вызывает функцию getRequest, передавая ей значения переменных state.page, state.perPage и значение поля ввода. 
+Функция getRequest отправляет GET-запрос на сервер, получает ответ в формате JSON и заполняет страницу данными из ответа.
+Таким образом, при клике на кнопку поиска происходит отправка запроса на сервер с новыми параметрами поиска, и страница обновляется с новыми результатами. */
+    function onSearchButtonClick () {
+        hideLines();
+        state.page = 1;
+        let field = document.querySelector(".search-field");
+        getRequest(state.page, state.perPage, field.value);
     }
+
+function onKeyPress () {
+    let field = document.querySelector(".search-field");
+    getAutocompletition(field.value);
 }
 
-// Получаем элементы формы и кнопки поиска
-let searchInput = document.querySelector('.search-input');
-let searchBtn = document.querySelector('.search-button');
+/*Данная функция является обработчиком события onload, то есть она будет выполнена после полной загрузки страницы.
+Первым действием функция вызывает функцию getRequest, передавая ей значения переменных state.page и state.perPage. 
+Эта функция отправляет GET-запрос на сервер, получает ответ в формате JSON и заполняет страницу данными из ответа.
 
-// Добавляем обработчик события для кнопки поиска
-searchBtn.addEventListener('click', function() {
-  let query = searchInput.value; // Получаем текст запроса из поля ввода
-  let url = new URL('http://cat-facts-api.std-900.ist.mospolytech.ru/facts'); // Формируем URL
-  url.searchParams.append('q', query); // Добавляем параметр q со значением текста запроса
-  let xhr = new XMLHttpRequest();
-  xhr.open('GET', url);
-  xhr.responseType = 'json';
-  xhr.onload = function() {
-    renderRecords(xhr.response.records);
-    setPaginationInfo(xhr.response._meta);
-    renderPaginationElement(xhr.response._meta);
-  };
-  xhr.send();
-});
+Затем функция добавляет обработчики событий на элементы страницы:
 
-window.onload = function () {
-    downloadData();
-    document.querySelector('.pagination').onclick = pageBtnHandler;
-    document.querySelector('.per-page-btn').onchange = perPageBtnHandler;
+- На элемент select с id="Per-page" добавляется обработчик onchange, который вызывает функцию onPagesChange при изменении значения выбранного пункта.
+- На кнопку с классом "search-btn" добавляется обработчик onclick, который вызывает функцию onSearchButtonClick при клике на кнопку.
+- На поле ввода с классом "search-field" добавляется обработчик onkeyup, который вызывает функцию onKeyPress при отпускании клавиши на клавиатуре.
+- На контейнер с классом "lines" добавляется обработчик onclick, который вызывает функцию hideLines при клике на элемент p внутри контейнера.
+
+Функция hideLines скрывает контейнер с классом "lines", чтобы пользователь мог увидеть результаты поиска. 
+
+Таким образом, после выполнения данной функции на странице будут установлены обработчики событий,
+которые будут реагировать на действия пользователя и выполнять соответствующие функции.*/
+
+window.onload = () => {
+    getRequest(state.page, state.perPage);
+    document.getElementById('Per-page').onchange = onPagesChange;
+    document.querySelector('.search-btn').onclick = onSearchButtonClick;
+    document.querySelector(".search-field").onkeyup = onKeyPress;
+    document.querySelector('.lines').onclick = (event) => {
+        if (event.target.tagName == "P") {
+            state.page = 1;
+            document.querySelector(".search-field").value = event.target.innerHTML;
+            hideLines();
+        }
+    };
 };

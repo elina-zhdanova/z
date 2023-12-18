@@ -9,67 +9,59 @@
 </head>
 
 <body>
-    <header class="header">
-        <nav>
-            <img class="logo" src="images/cat_white.png">
-            <div class="title">Facts about cats</div>
-        </nav>
+    <header class="header-style">
+        <div class="container">
+            <nav class="main">
+                <ul>
+                    <li id="active"><a>Лучшая страница EVER</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
     <main>
-        <div class="container">
-            <div class="search-form">
-                <input type="text" class="search-field">
-                <button class="search-btn">Найти</button>
-            </div>
-            <div class="pagination-info">
-                <span>
-                    Показывать по
-                    <select name="per-page" class="per-page-btn">
-                        <option>5</option>
-                        <option selected>10</option>
-                        <option>15</option>
-                        <option>20</option>
-                        <option>25</option>
-                        <option>50</option>
-                        <option>100</option>
-                    </select>
-                    записей на странице
-                </span>
-                <span class="current-interval-info">
-                    Показаны записи с <span class="current-interval-start">1</span> по <span
-                        class="current-interval-end">10</span> из <span class="total-count">190</span>
-                </span>
-            </div>
-            <div class="facts-list" data-url="http://cat-facts-api.std-900.ist.mospolytech.ru/facts">
-                <div class="facts-list-item">
-                    <div class="item-content">
-                        Scottish sailer Alexander Selkirk once survived for 4 years on a deserted island thanks to feral
-                        cats that protected him
-                        from large rats during the night.
-                    </div>
-                    <div class="item-footer">
-                        <div class="author-name">
-                            Alex Wohlbruck
-                        </div>
-                        <div class="upvotes">
-                            4
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="pagination">
-                <!-- <button class="btn first-page-btn" data-page="1">Первая страница</button>
-                <div class="pages-btn">
-                    <button class="btn active" data-page="1">1</button>
-                    <button class="btn" data-page="2">2</button>
-                    <button class="btn" data-page="3">3</button>
-                </div>
-                <button class="btn last-page-btn">Последняя страница</button> -->
+        <div class="search-form">
+            <input type="text" class="search-field">
+            <button class="search-btn" onclick="onSearchButtonClick">SeeARCH</button>
+            <div class="lines" id="hidden">
             </div>
         </div>
+        <aside>
+            <nav>
+                <form>
+                    <label for="Per-page">Количество страниц</label>
+                    <select name="Per-page" id="Per-page">
+                        <option value="5">5</option>
+                        <option value="10" selected>10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                </form>
+            </nav>
+        </aside>
+        <div class="posts"></div>
+        <div class="pagination">
+            <button onclick="getBackPage()" class="nav-btn">Назад</button>
+            <div id="btn-p" class="btnpage"></div>
+            <button onclick="getNextPage()" class="nav-btn">Вперед</button>
+        </div>
     </main>
-
-    <script src="main.js" defer></script>
+    <footer class="footer">
+        <div class="container">
+            <p>satanrise.org &reg;</p>
+        </div>
+    </footer>
+    <template id="post_t">
+        <div class="Post">
+            <p></p>
+            <div class="userCard">
+    
+            </div>
+        </div>
+    </template>
+    
+    <script src="main.js"></script>
 </body>
 
 </html>
