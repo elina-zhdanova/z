@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/0cb0b84d80.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <div class="menu-area">
+            <div class="container">
+                <div class="row">
+                    <div class="navbar text-center">
+                        <ul class="navig">
+                            <li class="liat">На главную</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="main">
+        <div class="ways">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="title-wrapper text-center mb-90">
+                            <h3 class="text-uppercase title text-white">Оставленные заявки</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- поиск -->
+            <div class="input-group">
+                <div class="form-outline" data-mdb-input-init="">
+                    <input type="search" id="form1" class="form-control search-field" placeholder="Поиск по названию">
+                </div>
+                <button type="button" class="btn btn-dark search-btn" data-mdb-ripple-init="">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                </button>
+            </div>
+        
+            <!-- <nav>
+                            <form>
+                                <label for="Per-page">Количество страниц</label>
+                                <select name="Per-page" id="Per-page">
+                                    <option value="5">5</option>
+                                    <option value="10" selected>10</option>
+                                    <option value="15">15</option>
+                                    <option value="20">20</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select>
+                            </form>
+                        </nav> -->
+        
+            <table id="myTable">
+                <thead>
+                    <tr>
+                        <th>№</th>
+                        <th>Название маршрута</th>
+                        <th>Дата</th>
+                        <th>Стоимость</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+        
+                    <tr>
+                        <td>Красная площадь</td>
+                        <td>Прогулка по историческому центру Москвы</td>
+                        <td>Красная площадь, Собор Василия Блаженного, Мавзолей Ленина</td>
+                        <td><button>Выбрать</button></td>
+                    </tr>
+                    <tr>
+                        <td>Арбат</td>
+                        <td>Прогулка по старинным улочкам и магазинам</td>
+                        <td>Старый Арбат, Дом-музей Булгакова, Художественный музей</td>
+                        <td><button>Выбрать</button></td>
+                    </tr>
+                    <tr>
+                        <td>Кремль</td>
+                        <td>Экскурсия в исторический кремль</td>
+                        <td>Московский Кремль, Арсенальная башня, Царь-пушка</td>
+                        <td><button>Выбрать</button></td>
+                    </tr>
+                    <tr>
+                        <td>Парк Горького</td>
+                        <td>Отдых и развлечения в центре города</td>
+                        <td>Парк Горького, Музей-квартира Чайковского, Развлекательный центр</td>
+                        <td><button>Выбрать</button></td>
+                    </tr>
+                    <tr>
+                        <td>Третьяковская галерея</td>
+                        <td>Искусство и культура в одном месте</td>
+                        <td>Третьяковская галерея, Выставки и мероприятия</td>
+                        <td><button>Выбрать</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        
+            <div class="pagination">
+                <button onclick="getBackPage()" class="nav-btn">Назад</button>
+                <div id="btn-p" class="btnpage">
+                    <button class="pageButton">1</button>
+                    <button class="pageButton" id="activePage">2</button>
+                    <button class="pageButton">3</button>
+                    <button class="pageButton">4</button>
+                </div>
+                <button onclick="getNextPage()" class="nav-btn">Вперед</button>
+            </div>
+        
+        </div>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+    </script>
+<script src="bla.js"></script>
+</body>
+
+</html>
