@@ -5,6 +5,10 @@
     color: aliceblue;
 }
 
+.body{
+    font-family: 'Montserrat', sans-serif;
+}
+
 .menu-area{
     background-color: #5b1339;
 }
@@ -112,4 +116,83 @@ header {
 
 .search-attractions{
     margin-left: 15px;
+}
+.modal {
+    display: none; /* Скрыто по умолчанию */
+    position: fixed; /* Остается на месте */
+    z-index: 1; /* Находится над всем другим */
+    overflow: auto; /* Включить прокрутку, если это необходимо */
+    background-color: rgb(0,0,0); /* Черный фон с прозрачностью */
+    background-color: rgba(0,0,0,0.4); /* Также добавляет прозрачность */
+  }
+  
+  /* Содержимое модального окна */
+  .modal-content {
+    background-color:#5b1339;
+    margin: 15% auto; /* 15% от верха и выровнено по центру */
+    padding: 20px;
+  }
+
+  .btn-make-excurtion-request{
+    background-color: #98ff98;
+    /* color: #36545B; */
+  }
+
+  .content_modal{
+    float: none;
+    margin: auto;
+  }
+
+.footer {
+    background: #0e0d0d;
+    padding: 30px 0px;
+    text-align: center;
+}
+
+.footer .rowd {
+    width: 100%;
+    margin: 1% 0%;
+    padding: 0.6% 0%;
+    color: gray;
+}
+
+.footer .rowd a {
+    text-decoration: none;
+    color: gray;
+    transition: 0.5s;
+}
+
+.footer .rowd a:hover {
+    color: #fff;
+}
+
+.footer .rowd ul {
+    width: 100%;
+}
+
+.footer .rowd ul li {
+    display: inline-block;
+    margin: 0px 30px;
+}
+
+.footer .rowd a i {
+    font-size: 2em;
+    margin: 0% 1%;
+}
+
+@media (max-width:720px) {
+    .footer {
+        text-align: left;
+        padding: 5%;
+    }
+
+    .footer .rowd ul li {
+        display: block;
+        margin: 10px 0px;
+        text-align: left;
+    }
+
+    .footer .rowd a i {
+        margin: 0% 3%;
+    }
 }

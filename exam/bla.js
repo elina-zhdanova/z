@@ -64,11 +64,27 @@
                 selectElement.appendChild(optionElement);
             });
         }
-       
+       function modalWindow(){
+            var modal = document.getElementById("myModal");
+        
+            var span = document.getElementsByClassName("close")[0];
+            modal.style.display = "block";
+
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+        
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+       }
        
         let filteredData = []; 
         let selectedOption = null;
         let selectedBtn = null;  
+        let selectedBtn2 = null;  
         async function main() {
         const tableData = await getListOfRoutes();
         filteredData = tableData;
@@ -91,9 +107,21 @@
         tableBody.innerHTML = '';
         data.forEach(function(row) {
             var newRow = document.createElement('tr');
-            newRow.innerHTML = '<td>' + row.name + '</td><td>' + row.language + '</td><td>' +row.workExperience+'</td>'+row.pricePerHour + 'руб.</td>';
+            newRow.innerHTML = '<td>' + row.name + '</td><td>' + row.language + '</td><td>' +row.workExperience+'</td>'+row.pricePerHour + 'руб.</td><td>'+ 
+            '</span></td><td><input type="radio" name="selectedRow" id="btn2'+row.id+'"></td>';
             tableBody.appendChild(newRow);
-                })
+            var Btn2 = document.getElementById('btn2'+row.id);
+             Btn2.addEventListener('click', function(){
+                    selectedBtn2 = row.id;
+                    var Reg = document.getElementById("regisApplic")
+                    Reg.classList.remove('d-none');
+                    Reg.onclick = function() {
+                        modalWindow();
+                        }
+                    
+                 });
+             });
+        
         }
 
         function renderTable(data) {
@@ -107,14 +135,15 @@
                     (row.mainObject.substring(0, 200) + '<span class="more-details" style="color: #1aa1c1; cursor: pointer;"> Подробнее</span>') : row.mainObject;
         
                 var newRow = document.createElement('tr');
-                newRow.innerHTML = '<td>' + row.name + '</td><td><span class="description">' + description + '</span></td><td><span class="main-object">' + mainObject + '</span></td><td><input type="radio" name="selectedRow" id="'+row.id+'"></td>';
+                newRow.innerHTML = '<td>' + row.name + '</td><td><span class="description">' + description + '</span></td><td><span class="main-object">' + mainObject
+                 + '</span></td><td><input type="radio" name="selectedRow" id="btn1'+row.id+'"></td>';
                 tableBody.appendChild(newRow);
-                var Btn = document.getElementById(row.id)
+                var Btn = document.getElementById('btn1'+row.id);
                 Btn.addEventListener('click',async function(){
                   const tableDataGuides = await getListOfGuides(row.id);   
                   renderTable2(tableDataGuides);
                   createSelectOptionsGid(tableDataGuides); 
-                  selectedBtn = row.id; 
+                  selectedBtn =row.id; 
                 });
                 if (row.id === selectedBtn) {
                     Btn.click();
@@ -175,9 +204,9 @@
             var filteredSearchData = filteredData.filter(function(row) {
                 return row.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
                     (selectedOption ? row.mainObject.includes(selectedOption) : true); 
-//В этом коде я использовал тернарный оператор (selectedOption ? row.mainObject.includes(selectedOption) : true), чтобы проверить, выбран ли вариант селекта. 
-//Если вариант выбран (selectedOption не равен null), то функция фильтрации будет проверять, включает ли mainObject выбранный вариант. 
- //Если вариант не выбран, то все строки будут проходить этот фильтр.
+                //В этом коде я использовал тернарный оператор (selectedOption ? row.mainObject.includes(selectedOption) : true), чтобы проверить, выбран ли вариант селекта. 
+                //Если вариант выбран (selectedOption не равен null), то функция фильтрации будет проверять, включает ли mainObject выбранный вариант. 
+                //Если вариант не выбран, то все строки будут проходить этот фильтр.
             });
             var paginatedData = paginate(filteredSearchData, currentPage, perPage);
             renderTable(paginatedData);
@@ -221,7 +250,7 @@
         
             let fromValue = parseInt(experienceFrom.value) || 0;  // Если значение не введено, считаем его равным 0
             let toValue = parseInt(experienceTo.value) || Infinity;  // Если значение не введено, считаем его равным бесконечности
-        
+           
             const tableData2 = await getListOfGuides(selectedBtn);
             let filteredData2 = tableData2.filter(row => 
                 (selectedLanguageOption === "Язык(Не выбран)" || row.language === selectedLanguageOption) && 
@@ -229,6 +258,9 @@
                 row.workExperience <= toValue
             );
             renderTable2(filteredData2);
+            if (selectedBtn2 !== null) {
+                document.getElementById('btn2' + selectedBtn2).click();
+            }
         }
         
         document.getElementById('select2').addEventListener('change', applyFiltersAndRender);
