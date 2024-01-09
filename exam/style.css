@@ -1,15 +1,15 @@
-.liat {
+.liat{
     list-style-type: none;
     display: inline;
     padding: 20px;
     color: aliceblue;
 }
 
-.menu-area {
+.menu-area{
     background-color: #5b1339;
 }
 
-.slide {
+.slide{
     background-image: url(https://telegra.ph/file/171ac66c556b3b9a6759c.jpg);
     width: 100%;
     background-size: cover;
@@ -18,7 +18,7 @@
     background-repeat: no-repeat;
 }
 
-.slide-caption {
+.slide-caption{
     background-color: rgba(131, 97, 138, 0.8);
     border-radius: 10px;
     position: absolute;
@@ -33,9 +33,9 @@
     padding-bottom: 90px;
 }
 
-.mb-30 {
-    margin-bottom: 30px;
-}
+ .mb-30 {
+     margin-bottom: 30px;
+ }
 
 .title {
     letter-spacing: 1.1px;
@@ -43,7 +43,6 @@
     margin-bottom: 30px;
     font-family: 'Rethink Sans', sans-serif;
 }
-
 .item {
     padding: 40px;
     box-shadow: 0px 3px 20px 0px rgb(47 46 43);
@@ -70,29 +69,28 @@ th,
 td {
     border: 1px solid black;
     padding: 8px;
-    text-align: left;
+    text-align: left; 
     color: #ffffff;
 }
 
 th {
     background-color: #98ff98;
     color: #000000;
-
+    
 }
 
-tr {
+tr{
     box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
 }
 
-.main {
+.main{
     background-color: #5b1339;
     background: linear-gradient(#5b1339, pink, #146853);
 }
 
-.plus {
+.plus{
     background-color: #fdf4e3;
 }
-
 /* 
 .ways{
     background-color: #146853;
@@ -107,11 +105,11 @@ header {
     width: 100%;
 }
 
-.list-attractions {
-    background-color: #d9c4ab;
+.list-attractions{
+    background-color: #d9c4ab; 
     color: #36545B;
 }
 
-.search-attractions {
+.search-attractions{
     margin-left: 15px;
 }
