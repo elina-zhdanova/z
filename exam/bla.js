@@ -19,6 +19,67 @@
         return json;
         
         }
+        // async function getListOfsendDataID() {
+        //     let url_guides = new URL('http://exam-2023-1-api.std-900.ist.mospolytech.ru/api/orders');
+        //     let api_key = "afab0af3-0ed6-4223-b414-62e77e098958";
+        //     let cur_url = url_guides;
+        //     cur_url.searchParams.append('api_key', api_key);
+        //     const response = await fetch(cur_url);
+        //     const json = await response.json();  
+        //     console.log(json);
+        //     if (json.length > 0) {
+        //         // Если есть, возвращаем ID последнего элемента
+        //         return json.length+1;
+        //     } else {
+        //         // Если нет, возвращаем 1
+        //         return 1;
+        //     }}
+            
+       async function sendData(date , duration, guide_id,  optionFirst , optionSecond, persons,price,route_id,student_id, time ) {
+        let url = new URL('http://exam-2023-1-api.std-900.ist.mospolytech.ru/api/orders');
+        url.searchParams.append('api_key', "afab0af3-0ed6-4223-b414-62e77e098958");
+        // let id = await getListOfsendDataID();
+        // console.log(id)
+        let data = {
+            // 'id': Number('21'+id) ,
+            'guide_id': guide_id,
+            'route_id': route_id,
+            'date': date,
+            'time': time,
+            'duration': duration,
+            'persons': persons,
+            'price': price,
+            'optionFirst': optionFirst,
+            'optionSecond': optionSecond,
+            // 'student_id': student_id,            
+        };
+        console.log(data);
+        let formData = new FormData();
+        for (let key in data) {
+            formData.append(key, data[key]);
+        }    
+        for (let pair of formData.entries()) {
+            console.log(pair[0]+ ', ' + pair[1]); 
+        }
+        
+        
+            try {
+                let response = await fetch(url, {
+                    method: 'POST',
+                    body: formData
+                });
+        
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+        
+                let jsonData = await response.json();
+                console.log(jsonData);
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+        
         
         function splitJsonStrings(array) {
             let resultArray = [];
@@ -64,23 +125,144 @@
                 selectElement.appendChild(optionElement);
             });
         }
-       function modalWindow(){
-            var modal = document.getElementById("myModal");
-        
-            var span = document.getElementsByClassName("close")[0];
-            modal.style.display = "block";
+     
+       function modalWindow(nameRote, nameGuid, idRoute, idGuid, pricePerHour){
+        console.log(idRoute, idGuid,pricePerHour)
+    
+        var Price;
+        document.getElementById('lablefio').textContent = 'ФИО гида '+nameRote;
+        document.getElementById('lableRote').textContent = 'Названия маршрута '+nameGuid;
+        var time;
+        var date;
+        var duration;
+        var col_people;
+        var first_option=false;
+        var second_option=false;
+        function calculatePrice() {
+            // Проверяем, заполнены ли все необходимые поля
+                if (date && time && duration && col_people !== undefined) {
 
-            span.onclick = function() {
+                Price=pricePerHour*Number(duration);
+                let dateObject = new Date(date);
+                let month = dateObject.getUTCMonth() + 1;
+                let day = dateObject.getUTCDate();
+                let nDay = dateObject.getUTCDay();
+                console.log(month, day, nDay)
+                if (nDay == 6 || nDay == 0) isThisDayOff = 1.5;
+                else if (((month == 1) && (day >= 1 && day <= 9)) ||
+                ((month == 3) && (day >= 6 && day <= 8)) ||
+                ((month == 4) && (day >= 30) || (month == 5) && (day <= 3)) ||
+                ((month == 5) && (day >= 7 && day <= 10)) ||
+                ((month == 6) && (day >= 11 && day <= 13)) ||
+                ((month == 11) && (day >= 4 && day <= 6))) {
+                isThisDayOff = 1.5;
+                } else isThisDayOff = 1;
+                Price = Price * isThisDayOff;
+
+                let Morning, Evening;
+                let hoursTime = Number(time.split(":")[0]);
+                if (hoursTime >= 9 && hoursTime <= 12) {
+                    Morning = 400;
+                    Evening = 0;
+                } else if (hoursTime >= 20 && hoursTime <= 23) {
+                    Evening = 1000;
+                    Morning = 0;
+                } else {
+                    Morning = 0;
+                    Evening = 0;
+                }
+                Price = Price + Morning + Evening;
+                let numberOfVisitors;
+                if (col_people >= 1 &&
+                    col_people <= 5) numberOfVisitors = 0;
+                else if (col_people > 5 &&
+                    col_people <= 10) numberOfVisitors = 1000;
+                else if (col_people > 10 &&
+                    col_people <= 20) numberOfVisitors = 1500;
+                Price = Price + numberOfVisitors;
+                
+                if(first_option){
+                    Price=Price-Price*0.15;
+                }
+                if(second_option){
+                    Price=Price+col_people*1000;
+                }
+                document.getElementById('price').textContent = 'Итоговая стоимость: '+ Price;
+                        }
+                    } 
+        document.getElementById('date').addEventListener('change', function() {
+            console.log('Дата изменена:', typeof( this.value), this.value);
+            date= this.value;
+            calculatePrice();
+        });
+        
+        document.getElementById('time').addEventListener('change', function() {
+            console.log('Время изменено:', typeof( this.value), this.value);
+            time= this.value;
+            calculatePrice();
+        });
+        
+        document.getElementById('selectmodal').addEventListener('change', function() {
+            console.log('Длительность экскурсии изменена:', typeof( this.value), this.value);
+            duration=this.value;
+            calculatePrice();
+        });
+        document.getElementById('col_people').addEventListener('input', function() {
+            console.log('Количество человек изменено:', typeof( this.value), this.value);
+            col_people= this.value;
+            calculatePrice();
+        });
+        
+        document.getElementById('first_option').addEventListener('change', function() {
+            console.log('Первая опция изменена:', this.checked);
+            first_option=this.checked;
+            calculatePrice();
+        });
+        
+        
+        document.getElementById('second_option').addEventListener('change', function() {
+            console.log('Вторая опция изменена:',typeof( this.value), this.checked);
+            second_option= this.checked;
+            calculatePrice();
+        });
+
+        var modal = document.getElementById("myModal");
+        var span = document.getElementsByClassName("close")[0];
+        modal.style.display = "block";
+        span.onclick = function() {
+              modal.style.display = "none";
+        }
+        window.onclick = function(event) {
+             if (event.target == modal) {
                 modal.style.display = "none";
+             }
             }
         
-            window.onclick = function(event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            }
+        document.getElementById('send').addEventListener('click', function(event) {
+            event.preventDefault()
+            
+            if (date && time && duration && col_people !== undefined){//  date, duration,guide_id, optionFirst , optionSecond, persons,price,route_id,student_id, time 
+            console.log(date,Number(duration), Number(idGuid), first_option,second_option, Number(col_people), Number(idRoute), 1223, time+":00");
+            sendData(date, Number(duration), Number(idGuid),  Number(first_option), Number(second_option), Number(col_people), Price, Number(idRoute), 122334, time);
+
+            document.getElementById('date').value = '';
+            document.getElementById('time').value = '';
+            document.getElementById('selectmodal').value = '';
+            document.getElementById('col_people').value = '';
+            document.getElementById('first_option').checked = false;
+            document.getElementById('second_option').checked = false;
+            document.getElementById('alert').style.display = 'block';
+            modal.style.display = "none";
+        }
+        else{
+            alert("Заполните все поля");
+        }
+        });
+
        }
-       
+       var Reg = document.getElementById("regisApplic")
+        let routName;
+        let routid;
         let filteredData = []; 
         let selectedOption = null;
         let selectedBtn = null;  
@@ -108,15 +290,15 @@
         data.forEach(function(row) {
             var newRow = document.createElement('tr');
             newRow.innerHTML = '<td>' + row.name + '</td><td>' + row.language + '</td><td>' +row.workExperience+'</td>'+row.pricePerHour + 'руб.</td><td>'+ 
-            '</span></td><td><input type="radio" name="selectedRow" id="btn2'+row.id+'"></td>';
+            '</span></td><td><input type="radio" name="selectedRow1" id="btn2'+row.id+'"></td>';
             tableBody.appendChild(newRow);
             var Btn2 = document.getElementById('btn2'+row.id);
              Btn2.addEventListener('click', function(){
                     selectedBtn2 = row.id;
-                    var Reg = document.getElementById("regisApplic")
                     Reg.classList.remove('d-none');
                     Reg.onclick = function() {
-                        modalWindow();
+                        modalWindow( routName,row.name,routid,row.id,row.pricePerHour
+                            );
                         }
                     
                  });
@@ -140,9 +322,12 @@
                 tableBody.appendChild(newRow);
                 var Btn = document.getElementById('btn1'+row.id);
                 Btn.addEventListener('click',async function(){
-                  const tableDataGuides = await getListOfGuides(row.id);   
+                  const tableDataGuides = await getListOfGuides(row.id); 
+                  routName=row.name;
+                  routid=row.id;  
                   renderTable2(tableDataGuides);
                   createSelectOptionsGid(tableDataGuides); 
+                  Reg.classList.add('d-none')
                   selectedBtn =row.id; 
                 });
                 if (row.id === selectedBtn) {
@@ -160,6 +345,9 @@
         firstBtn.textContent = 'Начало';
         firstBtn.addEventListener('click', function() {
             goToPage(1,searchTerm);
+            if (selectedBtn2 !== null) {
+                document.getElementById('btn2' + selectedBtn2).click();
+            }
         });
         paginationDiv.appendChild(firstBtn);
 
@@ -167,6 +355,9 @@
         prevBtn.textContent = 'Предыдущая';
         prevBtn.addEventListener('click', function() {
             goToPage(currentPage - 1, searchTerm);
+            if (selectedBtn2 !== null) {
+                document.getElementById('btn2' + selectedBtn2).click();
+            }
         });
         paginationDiv.appendChild(prevBtn);
         }
@@ -178,6 +369,9 @@
             pageBtn.addEventListener('click', function() {
                 goToPage(parseInt(this.textContent), searchTerm);
             });
+            if (selectedBtn2 !== null) {
+                document.getElementById('btn2' + selectedBtn2).click();
+            }
             paginationDiv.appendChild(pageBtn);
         }
         }
@@ -187,6 +381,9 @@
         nextBtn.textContent = 'Следующая';
         nextBtn.addEventListener('click', function() {
             goToPage(currentPage + 1, searchTerm);
+            if (selectedBtn2 !== null) {
+                document.getElementById('btn2' + selectedBtn2).click();
+            }
         });
         paginationDiv.appendChild(nextBtn);
 
@@ -194,6 +391,9 @@
         lastBtn.textContent = 'Конец';
         lastBtn.addEventListener('click', function() {
             goToPage(Math.ceil(dataLength / perPage), searchTerm);
+            if (selectedBtn2 !== null) {
+                document.getElementById('btn2' + selectedBtn2).click();
+            }
         });
         paginationDiv.appendChild(lastBtn);
         }
@@ -211,6 +411,9 @@
             var paginatedData = paginate(filteredSearchData, currentPage, perPage);
             renderTable(paginatedData);
             renderPageButtons(currentPage, filteredSearchData.length); 
+            if (selectedBtn2 !== null) {
+                document.getElementById('btn2' + selectedBtn2).click();
+            }
         }
    
         
@@ -261,6 +464,7 @@
             if (selectedBtn2 !== null) {
                 document.getElementById('btn2' + selectedBtn2).click();
             }
+            
         }
         
         document.getElementById('select2').addEventListener('change', applyFiltersAndRender);

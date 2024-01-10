@@ -18,7 +18,7 @@
                 <div class="row">
                     <div class="navbar text-center">
                         <ul class="navig">
-                            <li class="liat">На главную</li>
+                            <a href="index.html" class="text-decoration-none"><li class="liat">На главную</li></a>
                         </ul>
                     </div>
                 </div>
@@ -37,17 +37,17 @@
                     </div>
                 </div>
             </div>
-        
+
             <!-- поиск -->
-            <div class="input-group">
+            <!-- <div class="input-group">
                 <div class="form-outline" data-mdb-input-init="">
                     <input type="search" id="form1" class="form-control search-field" placeholder="Поиск по названию">
                 </div>
                 <button type="button" class="btn btn-dark search-btn" data-mdb-ripple-init="">
                     <i class="fas fa-search" aria-hidden="true"></i>
                 </button>
-            </div>
-        
+            </div> -->
+
             <!-- <nav>
                             <form>
                                 <label for="Per-page">Количество страниц</label>
@@ -61,7 +61,9 @@
                                 </select>
                             </form>
                         </nav> -->
-        
+
+           
+                        
             <table id="myTable">
                 <thead>
                     <tr>
@@ -69,62 +71,62 @@
                         <th>Название маршрута</th>
                         <th>Дата</th>
                         <th>Стоимость</th>
-                        <th></th>
+                        <th>///</th>
                     </tr>
                 </thead>
-                <tbody>
-        
-                    <tr>
-                        <td>Красная площадь</td>
-                        <td>Прогулка по историческому центру Москвы</td>
-                        <td>Красная площадь, Собор Василия Блаженного, Мавзолей Ленина</td>
-                        <td><button>Выбрать</button></td>
-                    </tr>
-                    <tr>
-                        <td>Арбат</td>
-                        <td>Прогулка по старинным улочкам и магазинам</td>
-                        <td>Старый Арбат, Дом-музей Булгакова, Художественный музей</td>
-                        <td><button>Выбрать</button></td>
-                    </tr>
-                    <tr>
-                        <td>Кремль</td>
-                        <td>Экскурсия в исторический кремль</td>
-                        <td>Московский Кремль, Арсенальная башня, Царь-пушка</td>
-                        <td><button>Выбрать</button></td>
-                    </tr>
-                    <tr>
-                        <td>Парк Горького</td>
-                        <td>Отдых и развлечения в центре города</td>
-                        <td>Парк Горького, Музей-квартира Чайковского, Развлекательный центр</td>
-                        <td><button>Выбрать</button></td>
-                    </tr>
-                    <tr>
-                        <td>Третьяковская галерея</td>
-                        <td>Искусство и культура в одном месте</td>
-                        <td>Третьяковская галерея, Выставки и мероприятия</td>
-                        <td><button>Выбрать</button></td>
-                    </tr>
+                <tbody id="table-body3">
+
                 </tbody>
             </table>
-        
-            <div class="pagination">
-                <button onclick="getBackPage()" class="nav-btn">Назад</button>
-                <div id="btn-p" class="btnpage">
-                    <button class="pageButton">1</button>
-                    <button class="pageButton" id="activePage">2</button>
-                    <button class="pageButton">3</button>
-                    <button class="pageButton">4</button>
-                </div>
-                <button onclick="getNextPage()" class="nav-btn">Вперед</button>
-            </div>
-        
+
+            <div class="pagination" id="pagination1"> </div>
+
         </div>
+
+        <footer>
+            <div class="footer">
+                <div class="rowd">
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-instagram"></i></a>
+                    <a href="#"><i class="fa fa-youtube"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                </div>
+        
+                <div class="rowd">
+                    <ul>
+                        <li><a href="#">Contact us</a></li>
+                        <li><a href="#">Our Services</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+        
+                <div class="rowd">
+                    INFERNO Copyright © 2024 Inferno - All rights reserved
+                </div>
+            </div>
+        </footer>
     </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
-    </script>
-<script src="bla.js"></script>
+    <div id="myModlDelet" class="modal">
+        <div class="content_modal col-lg-6">
+    
+            <div class="modal-content d-flex align-items-center">
+            <div>
+                <h2>Удалить заявку?</h2>
+            </div>
+              <form style="display: flex; justify-content: space-between;" onsubmit="return false;" >
+                <input  id="No" type="submit" value="Нет" class="mt-3" style="margin-right: 20px;">
+               
+                <input  id="Yes" type="submit" value="Да" class="mt-3">
+              </form>
+            </div>
+    
+        </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+        </script>
+    <script src="bla2.js"></script>
 </body>
 
 </html>
