@@ -11,7 +11,6 @@ async function getListOfsendData() {
     console.log(json);
 
     return json;
-    
 };
     
    
