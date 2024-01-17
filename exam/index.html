@@ -15,276 +15,271 @@
         rel="stylesheet">
 </head>
 <body class="body">
-    
-<div>
-    <header>
-        <div class="menu-area">
-            <div class="container">
-                <div class="row">
-                    <div class="navbar text-center">
-                        <h1 class="text-white nazv">Гуляй, Москва</h1>
-                        <ul class="navig">
-                            <li class="liat">О нас</li>
-                            <li class="liat">Маршруты</li>
-                            <li class="liat">Гиды</li>
-                            <li class="liat"> <a href="lk.html" class="text-decoration-none text-reset">Личный кабинет</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-    
-    <section>
-      
-        <div class="slide">
-            <div class="container about ms-5">
-                <div class="row">
-                    <div class="col col-lg-7 col-md-8 col-sm-9 slide-caption p-5">
-                        <h2 class="t">Узнай свой город поближе!</h2>
-                        <p class="text-white">Мы предоставляем увлекательные пешеходные туры по Москве, предназначенные для местных жителей и туристов, желающих более глубоко
-                        познакомиться с историей и культурой столицы России.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <div class="main">
-        <div class="bd-services__area pt-50 pb-90 qw">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="title-wrapper text-center mb-90">
-                            <h3 class="text-uppercase title text-white">Наши достоинства</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
         
-                    <div class="col-lg-4">
-                        <div class="item text-center mb-30 plus">
-                            <h3 class="title">Уникальные места</h3>
-                            <div class="content">
-                                <p>В Москве есть множество интересных мест, которые могут быть недоступны на автомобиле или другом транспорте.</p>
-                            </div>
+    <div>
+        <header>
+            <div class="menu-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="navbar text-center">
+                            <h1 class="text-white nazv">Гуляй, Москва</h1>
+                            <ul class="navig">
+                                <li class="liat">О нас</li>
+                                <li class="liat">Маршруты</li>
+                                <li class="liat">Гиды</li>
+                                <li class="liat"> <a href="lk.html" class="text-decoration-none text-reset">Личный кабинет</a></li>
+                            </ul>
                         </div>
                     </div>
+                </div>
+            </div>
+        </header>
         
-                    <div class="col-lg-4"> <!--адаптирован к большому экрану(max-width-960px)
-                                                    равную 4 колонкам Bootstrap,33.33% (4/12*100%) относительно ширины элемента «ряд». -->
-                        <div class="item text-center mb-30 plus">
-                            <h3 class="title">Исследование достопримечательностей</h3>
-                            <div class="content">
-                                <p>Во время пешеходного тура можно ближе познакомиться с московскими достопримечательностями, погулять по
-                                    историческим
-                                    улицам, ознакомиться с архитектурой и культурой города.</p>
-                            </div>
+        <section>
+            <div class="slide">
+                <div class="container about ms-5">
+                    <div class="row">
+                        <div class="col col-lg-7 col-md-8 col-sm-9 slide-caption p-5">
+                            <h2 class="t">Узнай свой город поближе!</h2>
+                            <p class="text-white">Мы предоставляем увлекательные пешеходные туры по Москве, предназначенные для местных жителей и туристов, желающих более глубоко
+                            познакомиться c историей и культурой столицы России.</p>
                         </div>
                     </div>
-
-                    <div class="col-lg-4">
-                        <div class="item text-center mb-30 plus">
-                            <h3 class="title">Здоровье</h3>
+                </div>
+            </div>
+        </section>
         
-                            <div class="content">
-                                <p>Пешеходный тур - это прекрасный способ вести здоровый образ жизни, получить физическую нагрузку и насладиться свежим
-                                воздухом.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="alert" style=" display: none; background-color: #98ff98; color: white; padding: 10px; margin-top: 10px; width: 100%;">
-            Заявка отправлена
-        </div>
-        <div class="ways">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="title-wrapper text-center mb-90">
-                            <h3 class="text-uppercase title text-white">Маршруты</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- поиск -->
-            <div class="input-group">
-                <div class="form-outline" data-mdb-input-init="">
-                    <input id="searchInput1" type="search" class="form-control search-field" placeholder="Поиск по названию" >
-                </div>
-                <!-- <button type="button" class="btn btn-dark search-btn" onclick="onSearchButtonClick" data-mdb-ripple-init="">
-                    <i class="fas fa-search" aria-hidden="true"></i> </button>-->
-                
-
-                <div class="col-lg-6 ">
-                    <select class="form-select list-attractions search-attractions" id="select1"> 
-                        <option selected value="" class="elem-attractions" id="all1">По достопримечательностям
-                        </option>
-                        <option class="d-none exaple-attractions elem-attractions">test</option>
-                    </select>
-                </div>
-            </div>
-
-            <table id="myTable">
-                <thead>
-                    <tr>
-                        <th>Название маршрута</th>
-                        <th>Описание</th>
-                        <th>Достопримечательности</th>
-                        <th>Выбрать</th>
-                    </tr>
-                </thead>
-                <tbody id="table-body1">
-
-                </tbody>
-            </table>
-            <div class="pagination" id="pagination1"> </div>
-
-
-            
-            <div class="ways ">
+        <div class="main">
+            <div class="bd-services__area pt-50 pb-90 qw">
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
                             <div class="title-wrapper text-center mb-90">
-                                <h3 class="text-uppercase title text-white">Гиды</h3>
+                                <h3 class="text-uppercase title text-white">Наши достоинства</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+            
+                        <div class="col-lg-4">
+                            <div class="item text-center mb-30 plus">
+                                <h3 class="title">Уникальные места</h3>
+                                <div class="content">
+                                    <p>В Москве есть множество интересных мест, которые могут быть недоступны на автомобиле или другом транспорте.</p>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="col-lg-4"> <!--адаптирован к большому экрану(max-width-960px)
+                                                        равную 4 колонкам Bootstrap,33.33% (4/12*100%) относительно ширины элемента «ряд». -->
+                            <div class="item text-center mb-30 plus">
+                                <h3 class="title">Исследование достопримечательностей</h3>
+                                <div class="content">
+                                    <p>Во время пешеходного тура можно ближе познакомиться с московскими достопримечательностями, погулять по
+                                        историческим
+                                        улицам, ознакомиться с архитектурой и культурой города.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="item text-center mb-30 plus">
+                                <h3 class="title">Здоровье</h3>
+            
+                                <div class="content">
+                                    <p>Пешеходный тур - это прекрасный способ вести здоровый образ жизни, получить физическую нагрузку и насладиться свежим
+                                    воздухом.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            
-                <div class="input-group">
-                    <div class="col-lg-6 mb-2">
-                        <select class="form-select list-attractions search-attractions" id="select2"> 
-                            <option selected value="" class="elem-attractions" id="all2">Язык(Не выбран)
-                            </option>
-                        </select>
-                    </div>
-
-                    <div class="container">
-                        <label for="work" class="text-white">Опыт работы:</label>
-                        <input type="number" id="experienceFrom" min="0" placeholder="от" class="rounded"> 
-                        <input type="number" id="experienceTo" min="0" placeholder="до" class="rounded">
+            </div>
+            <div id="alert">
+                Заявка отправлена
+            </div>
+            <div class="ways">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="title-wrapper text-center mb-90">
+                                <h3 class="text-uppercase title text-white">Маршруты</h3>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-            
-                <table id="myTable2">
+                <!-- поиск -->
+                <div class="input-group">
+                    <div class="form-outline" data-mdb-input-init="">
+                        <input id="searchInput1" type="search" class="form-control search-field" placeholder="Поиск по названию" >
+                    </div>
+                    <!-- <button type="button" class="btn btn-dark search-btn" onclick="onSearchButtonClick" data-mdb-ripple-init="">
+                        <i class="fas fa-search" aria-hidden="true"></i> </button>-->
+                    
+
+                    <div class="col-lg-6 ">
+                        <select class="form-select list-attractions search-attractions" id="select1"> 
+                            <option selected value="" class="elem-attractions" id="all1">По достопримечательностям
+                            </option>
+                            <option class="d-none exaple-attractions elem-attractions">test</option>
+                        </select>
+                    </div>
+                </div>
+
+                <table id="myTable">
                     <thead>
                         <tr>
-                            <th>ФИО</th>
-                            <th>Языки</th>
-                            <th>Опыт работы</th>
-                            <th>Стоимость услуг в час</th>
-                            <th></th>
+                            <th>Название маршрута</th>
+                            <th>Описание</th>
+                            <th>Достопримечательности</th>
+                            <th>Выбрать</th>
                         </tr>
                     </thead>
-                    <tbody id="table-body2">
+                    <tbody id="table-body1">
 
                     </tbody>
                 </table>
+                <div class="pagination" id="pagination1"> </div>
 
-                <div class="row-mg-5 mt-2">
-                <div class="d-flex justify-content-end container-btn-make-excurtion-request">
-                    <button  type="button" id="regisApplic" class=" d-none btn-light btn-lg btn-make-excurtion-request">Оформить заявку</button>
+
+                
+                <div class="ways ">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="title-wrapper text-center mb-90">
+                                    <h3 class="text-uppercase title text-white">Гиды</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="input-group">
+                        <div class="col-lg-6 mb-2">
+                            <select class="form-select list-attractions search-attractions" id="select2"> 
+                                <option selected value="" class="elem-attractions" id="all2">Язык(Не выбран)
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="container">
+                            <label for="work" class="text-white">Опыт работы:</label>
+                            <input type="number" id="experienceFrom" min="0" placeholder="от" class="rounded"> 
+                            <input type="number" id="experienceTo" min="0" placeholder="до" class="rounded">
+                        </div>
+                    </div>
+
+                
+                    <table id="myTable2">
+                        <thead>
+                            <tr>
+                                <th>ФИО</th>
+                                <th>Языки</th>
+                                <th>Опыт работы</th>
+                                <th>Стоимость услуг в час</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body2">
+
+                        </tbody>
+                    </table>
+
+                    <div class="row-mg-5 mt-2">
+                        <div class="d-flex justify-content-end container-btn-make-excurtion-request">
+                            <button  type="button" id="regisApplic" class=" d-none btn-light btn-lg btn-make-excurtion-request">Оформить заявку</button>
+                        </div>
+                    </div>
                 </div>
-          </div>
+            
             </div>
-        
-        </div>
 
-    </div>
-</div>
-
-<footer>
-    <div class="footer">
-        <div class="rowd">
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-instagram"></i></a>
-            <a href="#"><i class="fa fa-youtube"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-        </div>
-
-        <div class="rowd">
-            <ul>
-                <li><a href="#">Contact us</a></li>
-                <li><a href="#">Our Services</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Terms &amp; Conditions</a></li>
-            </ul>
-        </div>
-
-        <div class="rowd">
-            INFERNO Copyright © 2024 Inferno - All rights reserved
         </div>
     </div>
-</footer>
 
+    <footer>
+        <div class="footer">
+            <div class="rowd">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+                <a href="#"><i class="fa fa-youtube"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+            </div>
 
-<div id="myModal" class="modal">
-    <div class="content_modal col-lg-6">
+            <div class="rowd">
+                <ul>
+                    <li><a href="#">Contact us</a></li>
+                    <li><a href="#">Our Services</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms &amp; Conditions</a></li>
+                </ul>
+            </div>
 
-        <div class="modal-content d-flex align-items-center">
-        <div>
-            <h2>Оформление заявки</h2>
-            <span class="close">&times;</span>
+            <div class="rowd">
+                INFERNO Copyright © 2024 Inferno - All rights reserved
+            </div>
         </div>
-          <form onsubmit="return false;">
-            <!-- onsubmit="return false;" страница не перезагружается -->
-            <label id="lablefio" for="name">ФИО гида:</label><br>
-            <label id="lableRote" for="name_of_route">Название маршрута:</label><br>
-    
-                <div class="d-flex flex-row flex-wrap">
-                    <div class="containe">
-                        <label for="date">Дата:</label><br>
-                        <input type="date" id="date" name="date">
-                    </div>
-                    <div class="containe ms-3">
-                        <label for="time" >Время начала:</label><br>
-                        <input type="time" id="time" name="time">
-                    </div>
-                    <div class="containe ms-3">
-                        <label for="time_of_exc">Длительность экскурсии:</label><br>
-                        <select id="selectmodal" >
-                            <option value="0" selected hidden>Выберите продолжительность</option>
-                            <option value="1">1 час</option>
-                            <option value="2">2 часа</option>
-                            <option value="3">3 часа</option>
-                        </select>
-                    </div>
-                    <div class="containe">
-                        <label for="col_people">Количество человек (максимально 20):</label><br>
-                        <input type="text" id="col_people" name="col_people">
-                    </div>
+    </footer>
+
+
+    <div id="myModal" class="modal">
+        <div class="content_modal col-lg-6">
+
+            <div class="modal-content d-flex align-items-center">
+                <div>
+                    <h2>Оформление заявки</h2>
+                    <span class="close">&times;</span>
                 </div>
+                <form>
+                    <!--  onsubmit = "return false;"  onsubmit="return false;" страница не перезагружается -->
+                    <label id="lablefio" for="name">ФИО гида:</label><br>
+                    <label id="lableRote" for="name_of_route">Название маршрута:</label><br>
+            
+                    <div class="d-flex flex-row flex-wrap">
+                        <div class="containe">
+                            <label for="date">Дата:</label><br>
+                            <input type="date" id="date" name="date">
+                        </div>
+                        <div class="containe ms-3">
+                            <label for="time" >Время начала:</label><br>
+                            <input type="time" id="time" name="time">
+                        </div>
+                        <div class="containe ms-3">
+                            <label for="time_of_exc">Длительность экскурсии:</label><br>
+                            <select id="selectmodal" >
+                                <option value="0" selected hidden>Выберите продолжительность</option>
+                                <option value="1">1 час</option>
+                                <option value="2">2 часа</option>
+                                <option value="3">3 часа</option>
+                            </select>
+                        </div>
+                        <div class="containe">
+                            <label for="col_people">Количество человек (максимально 20):</label><br>
+                            <input type="text" id="col_people" name="col_people">
+                        </div>
+                    </div>
 
-                <div class="py-1">Дополнительные опции:</div>
-                <div class="form-check form-check-inline">
-                    <div class="py-1">
-                        <input class="form-check-input" type="checkbox" value="" id="first_option">
-                        <label class="form-check-label" for="first_option">Использовать скидку для школьников и студентов.</label>
-                        <div>Скидка 15%</div>
+                    <div class="py-1">Дополнительные опции:</div>
+                    <div class="form-check form-check-inline">
+                        <div class="py-1">
+                            <input class="form-check-input" type="checkbox" value="" id="first_option">
+                            <label class="form-check-label" for="first_option">Использовать скидку для школьников и студентов.</label>
+                            <div>Скидка 15%</div>
+                        </div>
+                        <div class="py-1">
+                            <input class="form-check-input" type="checkbox" value="" id="second_option">
+                            <label class="form-check-label" for="second_option">Легкие закуски и горячие напитки во время экскурсии.</label>
+                            <div>1000 рублей за каждого посетителя</div>
+                        </div>
                     </div>
-                    <div class="py-1">
-                        <input class="form-check-input" type="checkbox" value="" id="second_option">
-                        <label class="form-check-label" for="second_option">Легкие закуски и горячие напитки во время экскурсии.</label>
-                        <div>1000 рублей за каждого посетителя</div>
-                    </div>
-                </div>
-                <div id="price" class="modal-price">Итоговая стоимость:</div>
-            <input  id="send" type="submit" value="Отправить" class="mt-3">
-          </form>
+                    <div id="price" class="modal-price">Итоговая стоимость:</div>
+                    <input  id="send" type="submit" value="Отправить" class="mt-3">
+                </form>
+            </div>
+
         </div>
-
     </div>
-
-   
-    
-  
-  </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous">
