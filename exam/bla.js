@@ -41,7 +41,7 @@ async function sendData(date, duration, guide_id, optionFirst, optionSecond, per
     url.searchParams.append('api_key', "afab0af3-0ed6-4223-b414-62e77e098958");
     // let id = await getListOfsendDataID();
     // console.log(id)
-    let data = {
+    let data = { //данные, что мы отправим
         // 'id': Number('21'+id) ,
         'guide_id': guide_id,
         'route_id': route_id,
@@ -55,7 +55,7 @@ async function sendData(date, duration, guide_id, optionFirst, optionSecond, per
         // 'student_id': student_id,            
     };
     console.log(data);
-    let formData = new FormData();
+    let formData = new FormData();//чтобы отправить ключ-значение в виде формы
     for (let key in data) {
         formData.append(key, data[key]);
     }    
@@ -91,10 +91,10 @@ function splitJsonStrings(array) {//разделение для достопри
     });
     return resultArray;
 }
-function createSelectOptions(data) {
+function createSelectOptions(data) {//выпадающий список по дост.
     var selectElement = document.getElementById('select1');
     var options = new Set();
-    var defaultOptionElement = document.getElementById('all1');
+    var defaultOptionElement = document.getElementById('allsights');
     defaultOptionElement.value = "По достопримечательности";
     data.forEach(function(row) {
         options.add(row); 
@@ -105,20 +105,20 @@ function createSelectOptions(data) {
         var optionElement = document.createElement('option');
         optionElement.value = option;
         optionElement.textContent = option;
-        selectElement.appendChild(optionElement);//добавляем в DOM
+        selectElement.appendChild(optionElement);//добавляем в выпадающий список
     });
 }
-function createSelectOptionsGid(data) {
+function createSelectOptionsGid(data) {//селект по языкам
     var selectElement = document.getElementById('select2');
     var options = new Set();
-    var defaultOptionElement = document.getElementById('all2');
+    var defaultOptionElement = document.getElementById('alllang');
     defaultOptionElement.value = "Язык(Не выбран)";
-    data.forEach(function(row) {
+    data.forEach(function(row) {//перебираем элементы в массиве data и добавляем в сет
         options.add(row.language); 
     });
 
 
-    options.forEach(function(option) {
+    options.forEach(function(option) {//для каждого из option создаем новый элемент
         var optionElement = document.createElement('option');
         optionElement.value = option;
         optionElement.textContent = option;
@@ -196,7 +196,7 @@ function modalWindow(nameRote, nameGuid, idRoute, idGuid, pricePerHour) {
         }
     } 
 
-
+    //считываем данные с окна
     document.getElementById('date').addEventListener('change', function() {
         console.log('Дата изменена:', typeof(this.value), this.value);
         date = this.value;
@@ -245,13 +245,13 @@ function modalWindow(nameRote, nameGuid, idRoute, idGuid, pricePerHour) {
         }
     };
 
-    document.getElementById('send').addEventListener('click', function(event) {
+    document.getElementById('send').addEventListener('click', function(event) {//отправка 
         event.preventDefault();//чтоб страница не обновлялась
         
         if (date && time && duration && col_people !== undefined) {// если заполнены все поля 
             console.log(date, Number(duration), Number(idGuid), first_option, second_option, Number(col_people), Number(idRoute), 1223, time + ":00");
             sendData(date, Number(duration), Number(idGuid), Number(first_option), Number(second_option), Number(col_people), Price, Number(idRoute), 122334, time);
-            //обнуляем для след. отправки
+            //обнуляем для след. отправки и закрываем 
             document.getElementById('date').value = '';
             document.getElementById('time').value = '';
             document.getElementById('selectmodal').value = '';
@@ -266,7 +266,7 @@ function modalWindow(nameRote, nameGuid, idRoute, idGuid, pricePerHour) {
     });
 }
 
-var Reg = document.getElementById("regisApplic");
+var Reg = document.getElementById("regisApplic");//оформить заявку-регистрация
 let routName;
 let routid;
 let filteredData = []; 
