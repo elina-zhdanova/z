@@ -1,0 +1,22 @@
+.fragment{
+display: inline-block;
+    background-color: black;
+    color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+
+    
+}
+
+.page {
+    display: flex;
+    justify-content: center;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.container {
+    color: #000000;
+    align-self: center;
+}
