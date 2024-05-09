@@ -1,0 +1,17 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container py-3">
+  <h3>Параметры</h3>
+  <table class="table">
+    {% for key, value in request.args.items()%}
+    {% comment %} request.args - это словарь, который содержит параметры URL запроса (http://example.com/?param1=value1&param2=value2). 
+    Этот словарь предоставляет доступ к параметрам URL.
+    .items() - это метод, который возвращает все элементы из словаря  в виде списка кортежей. {% endcomment %}
+    <tr>
+      <td>{{key}}</td>
+      <td>{{value}}</td>
+    </tr>
+    {% endfor%}
+  </table>
+</div>
+
+{% endblock content %}

@@ -1,6 +1,6 @@
 {% extends "base.html" %} {% block content%}
-  <div class="container">
-    <h2>Cookie</h2>
+  <div class="container py-3">
+    <h3>Cookie</h3>
     <table class="table">
         {% for key, value in request.cookies.items()%}
       <tr>
@@ -10,4 +10,4 @@
       {% endfor%}
     </table>
   </div>
-{%endblock%}
+  {%endblock%}
