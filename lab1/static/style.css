@@ -20,3 +20,15 @@ display: inline-block;
     color: #000000;
     align-self: center;
 }
+
+body {
+    font-size: 1.25rem;
+}
+
+.avatar {
+    max-width: 100%;
+}
+
+.reply-block {
+    margin-left: 25px;
+}
