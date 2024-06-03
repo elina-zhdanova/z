@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% from 'pagination.html' import render_pagination %}
+
+{% block content %}
+    <h1>Список книг</h1>
+        <div>
+            {% for book in books.items %}
+            <div class="book">
+                <h2>{{ book.title }}</h2>
+                <p>Жанры: {{ ', '.join([genre.name for genre in book.genres]) }}</p>
+                <p>Год: {{ book.year }}</p>
+                <!-- Здесь код для отображения средней оценки и количества рецензий -->
+            </div>
+            {% endfor %}
+            <a href="{{ url_for('view_book', book_id=book.id) }}">Просмотр</a>
+            {% if 'role' in session and session['role'] in ['Администратор', 'Модератор'] %}
+                <a href="{{ url_for('edit_book', book_id=book.id) }}">Редактирование</a>
+            {% endif %}
+            {% if 'role' in session and session['role'] == 'Администратор' %}
+                <a href="{{ url_for('delete_book', book_id=book.id) }}">Удалить</a>
+            {% endif %}
+        </div>
+    {% if 'role' in session and session['role'] == 'Администратор' %}
+        <a href="{{ url_for('add_book') }}">Добавить книгу</a>
+    {% endif %}
+
+    <div class="mb-5">
+        {{ render_pagination(pagination, request.endpoint, search_params) }}
+    </div>
+
+{% endblock content %}

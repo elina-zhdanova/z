@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% from 'form.html' import form_user %}
+
+{% block content %}
+<form method="post" action="{{ url_for('delete_book', book_id=book.id) }}">
+    <button type="submit">Удалить</button>
+</form>
+
+{% endblock %}
