@@ -1,65 +1,40 @@
-{% macro form_user(user)%}
+{% macro form_user(user, roles) %}
 <form method="POST">
-    {% if request.endpoint == 'createuser'%}
     <div class="mb-3">
-        <input type="login" class="form-control {{ 'is-invalid' if error_login else '' }}" id="" aria-describedby=""
-            placeholder="Login" name="login" value={{user.login or '' }}>
+        <input type="text" class="form-control {{ 'is-invalid' if error_login else '' }}" id="login" aria-describedby="loginHelp" placeholder="Логин" name="login" value="{{ user.login or '' }}" required>
+        {% if error_login %}
+        <div class="invalid-feedback">{{ error_login }}</div>
+        {% endif %}
     </div>
-    {% if error_login %}
-    <div class="invalid-feedback">{{ error_login }}</div>
-    {% endif %}
+
     <div class="mb-3">
-        <input type="password" class="form-control {{ 'is-invalid' if error_passwd else '' }}" id="" aria-describedby=""
-            placeholder="Password" name="password" value={{user.password or '' }}>
+        <input type="password" class="form-control {{ 'is-invalid' if error_passwd else '' }}" id="password" placeholder="Пароль" name="password" required>
+        {% if error_passwd %}
+        <div class="invalid-feedback">{{ error_passwd }}</div>
+        {% endif %}
     </div>
-    {% if error_passwd %}
-    <div class="invalid-feedback">{{ error_passwd }}</div>
-    {% endif %}
-    {% elif request.endpoint == 'change_password' %}
+
     <div class="mb-3">
-        <input type="password" class="form-control {{ 'is-invalid' if error_old_passwd else '' }}" id=""
-            aria-describedby="" placeholder="Password" name="old_password">
+        <input type="text" class="form-control" id="first_name" placeholder="Имя" name="first_name" value="{{ user.first_name or '' }}" required>
     </div>
-    {% if error_passwd %}
-    <div class="invalid-feedback">{{ error_old_passwd }}</div>
-    {% endif %}
+
     <div class="mb-3">
-        <input type="password" class="form-control {{ 'is-invalid' if error_new_passwd or error_both_passwd else '' }}"
-            id="" aria-describedby="" placeholder="Password" name="new_password">
+        <input type="text" class="form-control" id="last_name" placeholder="Фамилия" name="last_name" value="{{ user.last_name or '' }}" required>
     </div>
-    {% if error_new_passwd %}
-    <div class="invalid-feedback">{{ error_new_passwd }}</div>
-    {% elif error_both_passwd %}
-    <div class="invalid-feedback">{{ error_both_passwd }}</div>
-    {% endif %}
+
     <div class="mb-3">
-        <input type="password" class="form-control {{ 'is-invalid' if error_both_passwd else '' }}" id=""
-            aria-describedby="" placeholder="Password" name="new_rep_password">
+        <input type="text" class="form-control" id="middle_name" placeholder="Отчество" name="middle_name" value="{{ user.middle_name or '' }}">
     </div>
-    {% if error_both_passwd %}
-    <div class="invalid-feedback">{{ error_both_passwd }}</div>
-    {% endif %}
-    {% endif%}
-    <div class="mb-3">
-        <input type="text" class="form-control" id="" aria-describedby="" placeholder="First name" name="first_name"
-            value={{user.first_name or '' }}>
-    </div>
-    <div class="mb-3">
-        <input type="text" class="form-control" id="" aria-describedby="" placeholder="Last name" name="last_name"
-            value={{user.last_name or '' }}>
-    </div>
-    <div class="mb-3">
-        <input type="text" class="form-control" id="" aria-describedby="" placeholder="Last name" name="middle_name"
-            value={{user.middle_name or '' }}>
-    </div>
+
     <div class="mb-3">
         <label for="role">Роль</label>
-        <select class="form-select" name="role_id" id="role">
+        <select class="form-select" name="role_id" id="role" required>
             {% for role in roles %}
-                <option value="{{ role.id }}">{{ role.name }}</option>
+            <option value="{{ role.id }}">{{ role.name }}</option>
             {% endfor %}
         </select>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+
+    <button type="submit" class="btn btn-primary">Создать</button>
 </form>
-{% endmacro%}
+{% endmacro %}

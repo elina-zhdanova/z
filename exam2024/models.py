@@ -1,8 +1,14 @@
 from sqlalchemy import Column, Integer, String, Text, ForeignKey, DateTime, create_engine
 from sqlalchemy.orm import relationship, declarative_base, sessionmaker
+from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from flask_login import UserMixin
+from werkzeug.security import check_password_hash, generate_password_hash
+from check_rights import CheckRights
 
 Base = declarative_base()
+
+db = SQLAlchemy(model_class=Base)
 
 class Book(Base):
     __tablename__ = 'books'
@@ -31,6 +37,9 @@ class Book(Base):
         if self.reviews:
             return sum(review.rating for review in self.reviews) / self.review_count
         return 0  # Возвращаем 0, если у книги нет оценок
+    
+    def __repr__(self):
+        return '<Book %r>' % self.name
 
 class Genre(Base):
     __tablename__ = 'genres'
@@ -56,7 +65,8 @@ class BookGenre(Base):
     book_id = Column(Integer, ForeignKey('books.id'), primary_key=True)
     genre_id = Column(Integer, ForeignKey('genres.id'), primary_key=True)
 
-class User(Base):
+
+class User(Base, UserMixin):
     __tablename__ = 'users'
 
     id = Column(Integer, primary_key=True)
@@ -69,6 +79,40 @@ class User(Base):
 
     role = relationship('Role', back_populates='users')
     reviews = relationship('Review', back_populates='user')
+    
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
+    
+    @property
+    def full_name(self):
+        return ' '.join([self.last_name, self.first_name, self.middle_name or ''])
+
+    def __repr__(self):
+        return '<User %r>' % self.login
+    
+    def is_admin(self):
+        return self.role.name == 'Администратор'
+
+    def is_moderator(self):
+        return self.role.name == 'Модератор'
+
+    def is_user(self):
+        return self.role.name == 'Пользователь'
+    
+    def can(self, action):
+        # Проверяем, имеет ли пользователь право на выполнение действия
+        if not self.is_authenticated:
+            return False
+        if action == 'edit_book' and (self.is_admin or self.is_moderator):
+            return True
+        if action == 'delete_book' and self.is_admin:
+            return True
+        if action == 'review_book' and (self.is_user or self.is_moderator or self.is_admin):
+            return True
+        return False
 
 class Role(Base):
     __tablename__ = 'roles'
@@ -92,9 +136,4 @@ class Review(Base):
     book = relationship('Book', back_populates='reviews')
     user = relationship('User', back_populates='reviews')
     
-# Создание движка и сессии для подключения к базе данных
-engine = create_engine('mysql://username:password@localhost/ElectronicLibrary')
-Session = sessionmaker(bind=engine)
 
-# Создание всех таблиц в базе данных
-Base.metadata.create_all(engine)
