@@ -33,7 +33,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   KEY `Users_ibfk_1` (`rid`),
   CONSTRAINT `Users_ibfk_1` FOREIGN KEY (`rid`) REFERENCES `roles` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +42,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'user','a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3','Жданова','Газизовна','Элина',1),(2,'Оля','03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4','П','','Оля',3);
+INSERT INTO `users` VALUES (1,'user','a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3','Жданова','Газизовна','Элина',1),(2,'Оля','03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4','П','','Оля',3),(3,'User2','5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5','пользователь','','user2',2);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-25 16:52:47
+-- Dump completed on 2024-09-25 16:58:40
