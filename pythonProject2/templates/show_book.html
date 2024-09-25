@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card mb-3">
+                <img src="/get_image?md5={{skin.md5}}&mime={{skin.mime}}" class="card-img-top" alt="Image">
+                <div class="card-body">
+                    <h1 class="card-title">{{ values.name }}</h1>
+                    <h4 class="card-subtitle mb-2 text-muted">{{ values.author }}, в {{values.year}} году</h4>
+                    <p class="card-text">{{ values.about | safe }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <div class="card-header">
+                    Рецензии
+                </div>
+                <div class="card-body">
+                    {% if my_review %}
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                Ваша рецензия
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">Оценка: {{ my_review.mark }}</p>
+                                <p class="card-text">Описание: {{ my_review.text | safe }}</p>
+                                <p class="card-text">Дата: {{ my_review.data }}</p>
+                            </div>
+                        </div>
+                    {% else %}
+                        <button class="btn btn-secondary" type="button">
+                            <a class="nav-link text-white" href="{{ url_for('review.create', index=values.id) }}">Написать рецензию</a>
+                        </button>
+                    {% endif %}
+                    {% for review in reviews %}
+                        {% if not my_review or review.login != my_review.login %}
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    {{ review.login }}
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text">Оценка: {{ review.mark }}</p>
+                                    <p class="card-text">Описание: {{ review.text | safe }}</p>
+                                    <p class="card-text">Дата: {{ review.data }}</p>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}>
